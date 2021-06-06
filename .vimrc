@@ -8,8 +8,10 @@ Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
 Plug 'itchyny/lightline.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
 Plug 'jremmen/vim-ripgrep'
+Plug 'maksimr/vim-jsbeautify'
 " Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
 
@@ -41,6 +43,8 @@ set shiftwidth=4
 set laststatus=2
 set scrolloff=5 sidescrolloff=10      " Buffer when scrolling: 5 lines vertical, 10 lines horizontal
 set history=1000                      " Limit of 1000 history entries
+set foldmethod=syntax
+set foldlevel=99
 
 " Persistent Undo
 
@@ -56,15 +60,38 @@ let g:netrw_ganner       = 0
 let g:netrw_winsize      = 25
 let g:ctrlp_use_caching  = 0
 
+" Javascript
+
+let g:javascript_conceal_function                  = "ƒ"
+let g:javascript_conceal_null                      = "ø"
+let g:javascript_conceal_this                      = "@"
+let g:javascript_conceal_return                    = "⇚"
+let g:javascript_conceal_undefined                 = "¿"
+let g:javascript_conceal_NaN                       = "ℕ"
+let g:javascript_conceal_prototype                 = "¶"
+let g:javascript_conceal_static                    = "•"
+let g:javascript_conceal_super                     = "Ω"
+let g:javascript_conceal_arrow_function            = "⇒"
+let g:javascript_conceal_noarg_arrow_function      = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+nnoremap <leader>a ggVG<CR>
+nnoremap <leader>c "+yy<CR>
+vnoremap <leader>c "+y<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v <bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>ps :Rg<CR>
+
+" Window movement and resizing
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv :wincmd v <bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <leader>ps :Rg<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
+
+" Folding
+nnoremap <leader>f za
 
 " YCM
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
@@ -74,8 +101,14 @@ nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Reminder to use hjkl
+" JSBeautify
+autocmd FileType javascript noremap <leader>t :call JsBeautify()<cr>
+autocmd FileType json noremap <leader>t :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <leader>t :call JsxBeautify()<cr>
+autocmd FileType html noremap <leader>t :call HtmlBeautify()<cr>
+autocmd FileType css noremap <leader>t :call CSSBeautify()<cr>
 
+" Reminder to use hjkl
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
