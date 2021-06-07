@@ -12,6 +12,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
 Plug 'jremmen/vim-ripgrep'
 Plug 'maksimr/vim-jsbeautify'
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
 " Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
 
@@ -29,7 +31,7 @@ set noerrorbells novisualbell         " Turn off visual and audible bells
 set expandtab                         " Tab -> four spaces
 set number                            " Line Numbers
 set nowrap                            " Don't wrap long lines
-set smartcase                         " Regex search is case insensitive unless a capital letter is used
+set ignorecase smartcase                         " Regex search is case insensitive unless a capital letter is used
 set nobackup nowritebackup noswapfile " Turn off backup files
 set incsearch                         " Show search results as you type
 set noshowmode  
@@ -52,6 +54,11 @@ set undodir=~/.vim/undodir
 set undofile
 set undolevels=1000
 set undoreload=10000
+
+" Syntax Additions
+
+autocmd BufNewFile,BufRead *.ttrm set syntax=json ft=json " Tetr.IO Replay Files
+autocmd BufNewFile,BufRead *.ttc set syntax=json ft=json  " Tetr.IO Settings Files
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let mapleader            = " "
