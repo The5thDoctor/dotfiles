@@ -2,7 +2,6 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
@@ -21,11 +20,18 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
 Plug 'romainl/vim-cool'
+Plug 'zhaozg/vim-diagram'
+Plug 'vim-scripts/bash-support.vim'
+
+" Colorschemes
+Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
 let g:lightline = {
-    \ 'colorscheme': 'Tomorrow_Night',
+    \ 'colorscheme': 'darcula',
     \ }
 
 " Makes Lightline Background Transparent
@@ -34,7 +40,7 @@ let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
 let s:palette.inactive.middle = s:palette.normal.middle
 let s:palette.tabline.middle = s:palette.normal.middle
 
-colorscheme gruvbox
+colorscheme dracula
 set background=dark
 syntax on
 
@@ -91,6 +97,7 @@ let g:javascript_conceal_NaN                       = "ℕ"
 "let g:javascript_conceal_arrow_function            = "⇒"
 "let g:javascript_conceal_noarg_arrow_function      = "🞅"
 "let g:javascript_conceal_underscore_arrow_function = "🞅"
+let g:javascript_plugin_jsdoc = 1
 
 set conceallevel=1
 
@@ -155,15 +162,21 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " JSBeautify
-autocmd FileType javascript noremap <leader>t :call JsBeautify()<cr>
-autocmd FileType json noremap <leader>t :call JsonBeautify()<cr>
-autocmd FileType jsx noremap <leader>t :call JsxBeautify()<cr>
-autocmd FileType html noremap <leader>t :call HtmlBeautify()<cr>
-autocmd FileType css noremap <leader>t :call CSSBeautify()<cr>
+autocmd FileType javascript noremap <leader>t :call JsBeautify()<CR>
+autocmd FileType json noremap <leader>t :call JsonBeautify()<CR>
+autocmd FileType jsx noremap <leader>t :call JsxBeautify()<CR>
+autocmd FileType html noremap <leader>t :call HtmlBeautify()<CR>
+autocmd FileType css noremap <leader>t :call CSSBeautify()<CR>
+
+" Run File
+autocmd FileType javascript noremap <leader>r :!node %:p<CR>
+autocmd FileType python noremap <leader>r :!python3 %:p<CR>
+autocmd FileType bash noremap <leader>r :!bash %:p<CR>
+
+" TODO: Update to run the shebang if present
 
 " Reminder to use hjkl
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-

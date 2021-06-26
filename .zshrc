@@ -9,7 +9,7 @@ PROMPT_EOL_MARK=''
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="crcandy"
+ZSH_THEME="robbyrussell"
 
 # eastwood
 # Set list of themes to pick from when loading at random
@@ -129,3 +129,4 @@ function stopwatch(){
 TIMER_PRECISION=2
 TIMER_FORMAT='[%d]'
 TIMER_THRESHOLD=1
+setopt no_hist_verify
