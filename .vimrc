@@ -18,7 +18,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'git@github.com:Valloric/YouCompleteMe.git'
 Plug 'romainl/vim-cool'
 Plug 'zhaozg/vim-diagram'
 Plug 'vim-scripts/bash-support.vim'
@@ -31,7 +30,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 let g:lightline = {
-    \ 'colorscheme': 'darcula',
+    \ 'colorscheme': 'dracula',
     \ }
 
 " Makes Lightline Background Transparent
@@ -50,7 +49,7 @@ hi Comment cterm=italic gui=italic
 set autoread                          " Auto reload changed files
 set encoding=UTF-8
 set noerrorbells novisualbell         " Turn off visual and audible bells
-set expandtab                         " Tab -> four spaces
+"set expandtab                        " Tab -> four spaces
 set number                            " Line Numbers
 set nowrap                            " Don't wrap long lines
 set ignorecase smartcase              " Regex search is case insensitive unless a capital letter is used
@@ -101,8 +100,7 @@ let g:javascript_plugin_jsdoc = 1
 
 set conceallevel=1
 
-autocmd BufNewFile,BufRead *.ttrm set syntax=json ft=json " Tetr.IO Replay Files
-autocmd BufNewFile,BufRead *.ttc set syntax=json ft=json  " Tetr.IO Settings Files
+source ~/.vim/filetype.vim
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
@@ -166,6 +164,7 @@ autocmd FileType javascript noremap <leader>t :call JsBeautify()<CR>
 autocmd FileType json noremap <leader>t :call JsonBeautify()<CR>
 autocmd FileType jsx noremap <leader>t :call JsxBeautify()<CR>
 autocmd FileType html noremap <leader>t :call HtmlBeautify()<CR>
+autocmd FileType xml noremap <leader>t :call HtmlBeautify()<CR>
 autocmd FileType css noremap <leader>t :call CSSBeautify()<CR>
 
 " Run File
@@ -173,7 +172,7 @@ autocmd FileType javascript noremap <leader>r :!node %:p<CR>
 autocmd FileType python noremap <leader>r :!python3 %:p<CR>
 autocmd FileType bash noremap <leader>r :!bash %:p<CR>
 
-" TODO: Update to run the shebang if present
+nnoremap <leader>m :make<CR>
 
 " Reminder to use hjkl
 nnoremap <Left> :echoe "Use h"<CR>
